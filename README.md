@@ -29,7 +29,7 @@ src
 
 Clone project repository from VCS:
 
-	`git clone https://github.com/nataliadovha/leaseplan-example.git`
+	`git clone https://github.com/nataliadovha/leaseplan-example1.git`
 	
 ## How to write new API test case
 

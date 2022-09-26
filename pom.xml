@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <serenity.version>3.1.15</serenity.version>
+        <serenity.version>2.6.0</serenity.version>
         <serenity.cucumber.version>2.6.0</serenity.cucumber.version>
         <encoding>UTF-8</encoding>
     </properties>
