@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff"><!--[if IE 7]>
+<!--<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">-->
+
+<link rel="stylesheet" type="text/css" href="fontawesome-free-5.7.2-web/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="fontawesome-free-5.7.2-web/css/v4-shims.min.css">
+
+<!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><link rel="stylesheet" type="text/css" href="chartist/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.css">
+<link rel="stylesheet" type="text/css" href="chartist/dist/chartist.min.css">
+<script src="chartist/dist/chartist.min.js"></script>
+<script src="chartist/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.js"></script>
+<!-- Required Stylesheets -->
+<link href="bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+
+<!-- Required Javascript -->
+<script src="bootstrap-treeview/dist/bootstrap-treeview.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.10.20/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.10.20/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.10.20/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="datatables/1.10.20/datatables.bootstrap4.min.js"></script>
+<link type="text/css" href="datatables/1.10.20/datatables.bootstrap4.min.css" rel="stylesheet" />
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+<link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- JQuery-UI -->
+<link type="text/css" href="jqueryui/1.11.2-start/jquery-ui.min.css" rel="Stylesheet" />
+<script type="text/javascript" src="jqueryui/1.11.2-start/jquery-ui.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.10.20/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.10.20/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.10.20/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="datatables/1.10.20/datatables.bootstrap4.min.js"></script>
+<link type="text/css" href="datatables/1.10.20/datatables.bootstrap4.min.css" rel="stylesheet" />
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+<!-- ImgPreview -->
+<script src="scripts/imgpreview.full.jquery.js" type="text/javascript"></script>
+</head>
+
+<body class="results-page">
+
+
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">
+                <span class="projecttitle">Serenity and Cucumber Quick Start</span>
+                <span class="projectsubtitle"></span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+        <span class="breadcrumbs">
+            <a href="index.html" class="breadcrumbs">Home</a>
+
+            > <a href="feba01ff5ef2d3cd0cc0011b0c2554af120fd05d3edae5b73b41093ad1f1ebb9.html">Search</a>
+            > <a href="db19fe42b7fa62544419ea617436583c82aab8bd8815c11ad34739de7a9d053b.html">Search For The Product</a>
+        > 
+        </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+        <li >
+            <a href="7ea0a5e2d679b9deeda9910ae4a9bcd3a281e0d908303a9e16e486103e98880c.html"><i class="fa fa-comments-o"></i> Capabilities</a>
+        </li>
+        <li >
+            <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="fa fa-comments-o"></i> Features</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 26-09-2022 01:19</span>
+    <br style="clear:left"/>
+</div>
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                                <div>
+                                    <h3 class="discreet-story-header">
+                                        <i class="fa fa-2x fa-comments-o"></i>
+                                        <span class="story-header-title">Search For The Product </span>
+                                    </h3>
+
+                                </div>
+
+                        </td>
+                        <td valign="top">
+                                <p class="tag">
+                                    <span class="badge tag-badge" style="background:default;">
+                                    <i class="fa fa-tag"></i>&nbsp;<a class="tagLink" style="background:default;"
+                                                                      href="612d9968525961aca8edfc2756ccd8ec0f3da9f2d707948bf0fbb46a58e8eeb9.html">Positive
+                                    (tag)</a>
+                                </span>
+                                </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><a href='##beforetable'><i class='fa fa-check-circle-o success-icon fa-2x' title='SUCCESS'></i></a></span>
+                            <span class="test-case-title">
+                                <span class="success-color">
+                                    
+                                        <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+        <div class="story-title">
+            <h3 class="story-header">Scenario Outline</h3>
+
+            <div class="scenario">Given call endpoint for &lt;product&gt;<br>When the response code is 200<br>Then verify the results displayed for &lt;product&gt;</div>
+
+        </div>
+
+    <div id="beforetable"></div>
+
+
+            <h3 class="story-header">Examples:&nbsp;</h3>
+                <div class="requirementNarrative"></div>
+
+
+                <p class="example-tag">
+                </p>
+
+            <div class="example-table test-report">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                            <th>Product</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="test-SUCCESS"><a href="#0">1</a></td>
+                                <td class="test-SUCCESS"><a
+                                            href="#0">"apple"</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="test-SUCCESS"><a href="#1">2</a></td>
+                                <td class="test-SUCCESS"><a
+                                            href="#1">"mango"</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="test-SUCCESS"><a href="#2">3</a></td>
+                                <td class="test-SUCCESS"><a
+                                            href="#2">"tofu"</a>
+                                </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+    <div id="tablecontents">
+        <div>
+            <table class="step-table">
+                <tr class="step-titles">
+                    <th width="65">
+                    </th>
+                    <th class="step-description-column greentext">
+                        Steps
+                    </th>
+
+                    <th width="130" class="greentext">Outcome</th>
+                    <th width="100" class="greentext"><i title="Duration" class="far fa-clock"></i></th>
+                </tr>
+                <tr class="step-table-separator">
+                    <td colspan="5"></td>
+                </tr>
+
+                    <tr class="test-SUCCESS">
+
+                        <td width="50" class="step-icon">
+                            <a name="0"></a>
+                                <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
+                                   style="display:block">
+                                    <i class="fa fa-plus-square-o imgstepSection0 success-icon"
+                                       style="margin-left: 20px; float:left; padding-right:5px"></i>
+                                </a>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
+                                   style="display:block;">
+                                    <span class="top-level-step">
+                                                Example 1: {product="apple"}
+                                        </span>
+                                </a>
+                                <span class="evidence">
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="top-level-step">SUCCESS</span></td>
+                        <td width="100"><span class="top-level-step">4s 873ms</span></td>
+                    </tr>
+                        <tr>
+                            <td colspan="5">
+                                <table id="stepSection0" class="step-table-nested" style="display:none;">
+                    <tr class="test-SUCCESS">
+
+                        <td width="70" class="step-icon">
+                            <a name="0-0"></a>
+                                <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0-0')"
+                                   style="display:block">
+                                    <i class="fa fa-plus-square-o imgstepSection0-0 success-icon"
+                                       style="margin-left: 40px; float:left; padding-right:5px"></i>
+                                </a>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0-0')"
+                                   style="display:block;">
+                                    <span class="nested-step">
+                                                Given call endpoint for "apple"
+                                        </span>
+                                </a>
+                                <span class="evidence">
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="nested-step">SUCCESS</span></td>
+                        <td width="100"><span class="nested-step">4s 098ms</span></td>
+                    </tr>
+                        <tr>
+                            <td colspan="5">
+                                <table id="stepSection0-0" class="step-table-nested" style="display:none;">
+                    <tr class="test-SUCCESS">
+
+                        <td width="90" class="step-icon">
+                            <a name="0-0-0"></a>
+                                <span style="margin-left: 60px;"
+                                      class="nested-group-icon"><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                    <span class="nested-group-step">
+                                                GET https://waarkoop-server.herokuapp.com/api/v1/search/test/apple
+                                        </span>
+                                <span class="evidence">
+                                        <span class="piece-of-evidence">
+                    <span>
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="collapse"
+                                data-target="#restModal-REST-3">
+                            REST Query
+                        </button>
+                    </span>
+                    <!-- Modal -->
+                    <div class="rest-query-details">
+                        <div class="collapse multi-collapse" id="restModal-REST-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4>Response</h4>
+                                        <p>URL: https://waarkoop-server.herokuapp.com/api/v1/search/test/apple</p>
+                                        <p>Status code: 200</p>
+                                        <p>Content Type: null</p>
+                                        <h4>Request Headers</h4>
+                                        <pre>Accept=*/*</pre>
+                                        <h4>Content Body</h4>
+                                        <pre></pre>
+                                        <h4>Request Cookies</h4>
+                                        <pre></pre>
+                                        <h4>Response Headers</h4>
+                                        <pre>Connection: keep-alive<br>Date: Sun, 25 Sep 2022 22:20:02 GMT<br>Server: uvicorn<br>Content-Length: 11162<br>Content-Type: application/json<br>Via: 1.1 vegur</pre>
+                                    <h4>Response Body</h4>
+                                        <pre>[<br>    {<br>        &quot;provider&quot;: &quot;Vomar&quot;,<br>        &quot;title&quot;: &quot;Crystal Clear Apple Pear Pak 1,5L&quot;,<br>        &quot;url&quot;: &quot;https://www.vomar.nl/producten/vers/fruit/any/268593&quot;,<br>        &quot;brand&quot;: &quot;Crystal Clear&quot;,<br>        &quot;price&quot;: 1.39,<br>        &quot;unit&quot;: &quot;1,5L&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://files.vomar.nl/articles/Crystal-Clear-Apple-Pear-Pak-1-5L-8715600240801-1-637957261497236895.png&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Apple Bandit Cider juicy apple 0.0 6-pack&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi505670/apple-bandit-cider-juicy-apple-0-0-6-pack&quot;,<br>        &quot;brand&quot;: &quot;Apple Bandit&quot;,<br>        &quot;price&quot;: 5.59,<br>        &quot;unit&quot;: &quot;6 x 30 cl&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383731303538?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Fernandes Super pineapple&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi466976/fernandes-super-pineapple&quot;,<br>        &quot;brand&quot;: &quot;Fernandes&quot;,<br>        &quot;price&quot;: 2.39,<br>        &quot;unit&quot;: &quot;1,5 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239393030363131?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Bacardi Roasted pineapple rum punch&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi519059/bacardi-roasted-pineapple-rum-punch&quot;,<br>        &quot;brand&quot;: &quot;Bacardi&quot;,<br>        &quot;price&quot;: 2.99,<br>        &quot;unit&quot;: &quot;200 ml&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383831343134?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Pickwick Spices Turkish apple&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi143435/pickwick-spices-turkish-apple&quot;,<br>        &quot;brand&quot;: &quot;Pickwick&quot;,<br>        &quot;price&quot;: 1.79,<br>        &quot;unit&quot;: &quot;20 stuks&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239373932323233?revLabel=3&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Apple Bandit Cider raspberry&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi505714/apple-bandit-cider-raspberry&quot;,<br>        &quot;brand&quot;: &quot;Apple Bandit&quot;,<br>        &quot;price&quot;: 5.65,<br>        &quot;unit&quot;: &quot;6 x 33 cl&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383731303536?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Fuze Tea Green tea apple kiwi no sugar&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi518920/fuze-tea-green-tea-apple-kiwi-no-sugar&quot;,<br>        &quot;brand&quot;: &quot;Fuze Tea&quot;,<br>        &quot;price&quot;: 2.09,<br>        &quot;unit&quot;: &quot;1,25 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239393030353632?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Vomar&quot;,<br>        &quot;title&quot;: &quot;Fernandes Super Pineapple Sparkling Lemonade 1,5 L&quot;,<br>        &quot;url&quot;: &quot;https://www.vomar.nl/producten/vers/fruit/any/136071&quot;,<br>        &quot;brand&quot;: &quot;Fernandes&quot;,<br>        &quot;price&quot;: 2.29,<br>        &quot;unit&quot;: &quot;1,5 L&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://files.vomar.nl/articles/Fernandes-Super-Pineapple-Sparkling-Lemonade-1-5-L-8710642036047-1-637957266060567776.png&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Vomar&quot;,<br>        &quot;title&quot;: &quot;Apple Bandit Cider Juicy Apple 0.0% Fles 6 x 30 cl&quot;,<br>        &quot;url&quot;: &quot;https://www.vomar.nl/producten/vers/fruit/any/144371&quot;,<br>        &quot;brand&quot;: &quot;Apple Bandit&quot;,<br>        &quot;price&quot;: 5.25,<br>        &quot;unit&quot;: &quot;1 st.&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://files.vomar.nl/articles/Apple-Bandit-Cider-Juicy-Apple-0.0-Fles-6-x-30-cl-8712000057657-1-637757640857471080.png&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Dove Women apple and white tea deodorant&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi451011/dove-women-apple-and-white-tea-deodorant&quot;,<br>        &quot;brand&quot;: &quot;Dove&quot;,<br>        &quot;price&quot;: 5.19,<br>        &quot;unit&quot;: &quot;150 ml&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: &quot;2 + 1 gratis&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383237343032?revLabel=12&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Innocent Apple juice&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi486005/innocent-apple-juice&quot;,<br>        &quot;brand&quot;: &quot;Innocent&quot;,<br>        &quot;price&quot;: 4.19,<br>        &quot;unit&quot;: &quot;1,5 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239373737363039?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Head &amp; Shoulders Antiroos apple fresh shampoo&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi192348/head-en-shoulders-antiroos-apple-fresh-shampoo&quot;,<br>        &quot;brand&quot;: &quot;Head &amp; Shoulders&quot;,<br>        &quot;price&quot;: 5.49,<br>        &quot;unit&quot;: &quot;285 ml&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: &quot;3 voor 10.00&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383430363530?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Rivella Pineapple&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi476679/rivella-pineapple&quot;,<br>        &quot;brand&quot;: &quot;Rivella&quot;,<br>        &quot;price&quot;: 2.35,<br>        &quot;unit&quot;: &quot;1,5 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239373330363433?revLabel=4&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Spa Touch niet bruisend raspberry apple&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi457139/spa-touch-niet-bruisend-raspberry-apple&quot;,<br>        &quot;brand&quot;: &quot;Spa&quot;,<br>        &quot;price&quot;: 1.39,<br>        &quot;unit&quot;: &quot;1 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239373337393439?revLabel=2&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Tenzing Pineapple passionfruit&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi511485/tenzing-pineapple-passionfruit&quot;,<br>        &quot;brand&quot;: &quot;Tenzing&quot;,<br>        &quot;price&quot;: 1.49,<br>        &quot;unit&quot;: &quot;250 ml&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383430363330?revLabel=2&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Vomar&quot;,<br>        &quot;title&quot;: &quot;Apple Bandit Cider Juicy Apple Fles 6 x 30 cl&quot;,<br>        &quot;url&quot;: &quot;https://www.vomar.nl/producten/vers/fruit/any/121232&quot;,<br>        &quot;brand&quot;: &quot;Apple Bandit&quot;,<br>        &quot;price&quot;: 5.49,<br>        &quot;unit&quot;: &quot;1 st.&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://files.vomar.nl/articles/Apple-Bandit-Cider-Juicy-Apple-Fles-6-x-30-cl-8712000039103-1-637673834118233795.png&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Spa Touch niet bruisend raspberry apple&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi469066/spa-touch-niet-bruisend-raspberry-apple&quot;,<br>        &quot;brand&quot;: &quot;Spa&quot;,<br>        &quot;price&quot;: 5.69,<br>        &quot;unit&quot;: &quot;6 x 0.5 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239363932303037?revLabel=2&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Crystal Clear Sparkling apple&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi476567/crystal-clear-sparkling-apple&quot;,<br>        &quot;brand&quot;: &quot;Crystal Clear&quot;,<br>        &quot;price&quot;: 1.89,<br>        &quot;unit&quot;: &quot;1,5 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239373334353230?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Vomar&quot;,<br>        &quot;title&quot;: &quot;Apple Bandit Cider Raspberry Fles 6 x 30 cl&quot;,<br>        &quot;url&quot;: &quot;https://www.vomar.nl/producten/vers/fruit/any/144369&quot;,<br>        &quot;brand&quot;: &quot;Apple Bandit&quot;,<br>        &quot;price&quot;: 5.49,<br>        &quot;unit&quot;: &quot;1 st.&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://files.vomar.nl/articles/Apple-Bandit-Cider-Raspberry-Fles-6-x-30-cl-8712000057664-1-637757640870969641.png&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Innocent Apple berry juice&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi212799/innocent-apple-berry-juice&quot;,<br>        &quot;brand&quot;: &quot;Innocent&quot;,<br>        &quot;price&quot;: 3.15,<br>        &quot;unit&quot;: &quot;900 ml&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239373536353937?revLabel=2&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Quaker Cruesli apple, raisin &amp; pumpkin seeds&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi516892/quaker-cruesli-apple-raisin-en-pumpkin-seeds&quot;,<br>        &quot;brand&quot;: &quot;Quaker&quot;,<br>        &quot;price&quot;: 4.09,<br>        &quot;unit&quot;: &quot;850 g&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: &quot;Keuzedeal 10% korting&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383534343134?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Vomar&quot;,<br>        &quot;title&quot;: &quot;Spa Touch niet bruisend Raspberry - Apple 50 cl&quot;,<br>        &quot;url&quot;: &quot;https://www.vomar.nl/producten/vers/fruit/any/143557&quot;,<br>        &quot;brand&quot;: &quot;Spa&quot;,<br>        &quot;price&quot;: 0.83,<br>        &quot;unit&quot;: &quot;1 st.&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://files.vomar.nl/articles/Spa-Touch-niet-bruisend-Raspberry-Apple-50-cl-5410013185215-1-637957269749042579.png&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Dove Roller go fresh apple &amp; white tea&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi453921/dove-roller-go-fresh-apple-en-white-tea&quot;,<br>        &quot;brand&quot;: &quot;Dove&quot;,<br>        &quot;price&quot;: 4.25,<br>        &quot;unit&quot;: &quot;50 ml&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: &quot;2 + 1 gratis&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383839313232?revLabel=2&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Fruut Crispy apple with cinnamon&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi518705/fruut-crispy-apple-with-cinnamon&quot;,<br>        &quot;brand&quot;: &quot;Fruut&quot;,<br>        &quot;price&quot;: 0.99,<br>        &quot;unit&quot;: &quot;20 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239373837393836?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Apple Bandit Cider juicy apple 6-pack&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi389420/apple-bandit-cider-juicy-apple-6-pack&quot;,<br>        &quot;brand&quot;: &quot;Apple Bandit&quot;,<br>        &quot;price&quot;: 6.29,<br>        &quot;unit&quot;: &quot;6 x 0,3 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383731303033?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Vomar&quot;,<br>        &quot;title&quot;: &quot;Jack Daniel's Whiskey Apple 700 ml&quot;,<br>        &quot;url&quot;: &quot;https://www.vomar.nl/producten/vers/fruit/any/143543&quot;,<br>        &quot;brand&quot;: &quot;Jack Daniel's&quot;,<br>        &quot;price&quot;: 26.99,<br>        &quot;unit&quot;: &quot;700 ml&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://files.vomar.nl/articles/Jack-Daniel-s-Whiskey-Apple-700-ml-5099873017623-1-637957267351362196.png&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Quaker Colours orange, apple and raspberry&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi508385/quaker-colours-orange-apple-and-raspberry&quot;,<br>        &quot;brand&quot;: &quot;Quaker&quot;,<br>        &quot;price&quot;: 3.89,<br>        &quot;unit&quot;: &quot;450 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383234383237?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;CoolBest Premium Pineapple&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi475653/coolbest-premium-pineapple&quot;,<br>        &quot;brand&quot;: &quot;CoolBest&quot;,<br>        &quot;price&quot;: 2.29,<br>        &quot;unit&quot;: &quot;1 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383238373332?revLabel=2&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Fruut Crispy apple&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi518710/fruut-crispy-apple&quot;,<br>        &quot;brand&quot;: &quot;Fruut&quot;,<br>        &quot;price&quot;: 0.99,<br>        &quot;unit&quot;: &quot;20 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239373838353233?revLabel=2&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Licor 43 Apple&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi496131/licor-43-apple&quot;,<br>        &quot;brand&quot;: &quot;Licor 43&quot;,<br>        &quot;price&quot;: 2.59,<br>        &quot;unit&quot;: &quot;250 ml&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239373634363238?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Vomar&quot;,<br>        &quot;title&quot;: &quot;I'm Juice Pineapple Melon Mango 500 ml&quot;,<br>        &quot;url&quot;: &quot;https://www.vomar.nl/producten/vers/fruit/any/138020&quot;,<br>        &quot;brand&quot;: &quot;I'm Juice&quot;,<br>        &quot;price&quot;: 2.19,<br>        &quot;unit&quot;: &quot;500 ml&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://files.vomar.nl/articles/I-m-Juice-Pineapple-Melon-Mango-500-ml-8718096117275-1-637957260981137939.png&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Innocent Apple juice&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi202922/innocent-apple-juice&quot;,<br>        &quot;brand&quot;: &quot;Innocent&quot;,<br>        &quot;price&quot;: 2.89,<br>        &quot;unit&quot;: &quot;900 ml&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239373536353931?revLabel=2&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    }<br>]</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        </span>
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                        <td width="100"><span class="nested-group-step"></span></td>
+                    </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                    <tr class="test-SUCCESS">
+
+                        <td width="70" class="step-icon">
+                            <a name="0-1"></a>
+                                <span style="margin-left: 40px;"
+                                      class="nested-group-icon"><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                    <span class="nested-group-step">
+                                                When the response code is 200
+                                        </span>
+                                <span class="evidence">
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                        <td width="100"><span class="nested-group-step">046ms</span></td>
+                    </tr>
+                    <tr class="test-SUCCESS">
+
+                        <td width="70" class="step-icon">
+                            <a name="0-2"></a>
+                                <span style="margin-left: 40px;"
+                                      class="nested-group-icon"><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                    <span class="nested-group-step">
+                                                Then verify the results displayed for "apple"
+                                        </span>
+                                <span class="evidence">
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                        <td width="100"><span class="nested-group-step">656ms</span></td>
+                    </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                    <tr class="test-SUCCESS">
+
+                        <td width="50" class="step-icon">
+                            <a name="1"></a>
+                                <a href="javaScript:void(0)" onClick="toggleDiv('stepSection1')"
+                                   style="display:block">
+                                    <i class="fa fa-plus-square-o imgstepSection1 success-icon"
+                                       style="margin-left: 20px; float:left; padding-right:5px"></i>
+                                </a>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                <a href="javaScript:void(0)" onClick="toggleDiv('stepSection1')"
+                                   style="display:block;">
+                                    <span class="top-level-step">
+                                                Example 2: {product="mango"}
+                                        </span>
+                                </a>
+                                <span class="evidence">
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="top-level-step">SUCCESS</span></td>
+                        <td width="100"><span class="top-level-step">1s 045ms</span></td>
+                    </tr>
+                        <tr>
+                            <td colspan="5">
+                                <table id="stepSection1" class="step-table-nested" style="display:none;">
+                    <tr class="test-SUCCESS">
+
+                        <td width="70" class="step-icon">
+                            <a name="1-0"></a>
+                                <a href="javaScript:void(0)" onClick="toggleDiv('stepSection1-0')"
+                                   style="display:block">
+                                    <i class="fa fa-plus-square-o imgstepSection1-0 success-icon"
+                                       style="margin-left: 40px; float:left; padding-right:5px"></i>
+                                </a>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                <a href="javaScript:void(0)" onClick="toggleDiv('stepSection1-0')"
+                                   style="display:block;">
+                                    <span class="nested-step">
+                                                Given call endpoint for "mango"
+                                        </span>
+                                </a>
+                                <span class="evidence">
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="nested-step">SUCCESS</span></td>
+                        <td width="100"><span class="nested-step">998ms</span></td>
+                    </tr>
+                        <tr>
+                            <td colspan="5">
+                                <table id="stepSection1-0" class="step-table-nested" style="display:none;">
+                    <tr class="test-SUCCESS">
+
+                        <td width="90" class="step-icon">
+                            <a name="1-0-0"></a>
+                                <span style="margin-left: 60px;"
+                                      class="nested-group-icon"><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                    <span class="nested-group-step">
+                                                GET https://waarkoop-server.herokuapp.com/api/v1/search/test/mango
+                                        </span>
+                                <span class="evidence">
+                                        <span class="piece-of-evidence">
+                    <span>
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="collapse"
+                                data-target="#restModal-REST-8">
+                            REST Query
+                        </button>
+                    </span>
+                    <!-- Modal -->
+                    <div class="rest-query-details">
+                        <div class="collapse multi-collapse" id="restModal-REST-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4>Response</h4>
+                                        <p>URL: https://waarkoop-server.herokuapp.com/api/v1/search/test/mango</p>
+                                        <p>Status code: 200</p>
+                                        <p>Content Type: null</p>
+                                        <h4>Request Headers</h4>
+                                        <pre>Accept=*/*</pre>
+                                        <h4>Content Body</h4>
+                                        <pre></pre>
+                                        <h4>Request Cookies</h4>
+                                        <pre></pre>
+                                        <h4>Response Headers</h4>
+                                        <pre>Connection: keep-alive<br>Date: Sun, 25 Sep 2022 22:20:03 GMT<br>Server: uvicorn<br>Content-Length: 15827<br>Content-Type: application/json<br>Via: 1.1 vegur</pre>
+                                    <h4>Response Body</h4>
+                                        <pre>[<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Tasting Good Vitaminewater mango guave&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8717399840545&quot;,<br>        &quot;brand&quot;: &quot;Akom Oldenzaal B.V.&quot;,<br>        &quot;price&quot;: 2.19,<br>        &quot;unit&quot;: &quot;3 l&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/734a0000-ff27-0003-0e84-08d9243281d5/images/AW0HA3GItENDpZ-NPK0ohvI./AABKcyf-AwDnHwjZKkL-kA.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Danio Romige kwark mango kiwi banaan&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8713788119063&quot;,<br>        &quot;brand&quot;: &quot;Danone Nederland B.V.&quot;,<br>        &quot;price&quot;: 2.3,<br>        &quot;unit&quot;: &quot;450 g&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/a0ff7603-1fc0-4641-8d0b-0d5f434f3561/images/AW0HA3GItENDpZ-NPK0ohvI./AAAJLGBmb9bSRgjZlIoqkQ.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Cantaloupe aardbei mango appel&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi520289/ah-cantaloupe-aardbei-mango-appel&quot;,<br>        &quot;brand&quot;: &quot;AH&quot;,<br>        &quot;price&quot;: 1.75,<br>        &quot;unit&quot;: &quot;130 g&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: &quot;3 voor 5.00&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383731393539?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Sisi sinas/mango no bubbles&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi99121/sisi-sinas-mango-no-bubbles&quot;,<br>        &quot;brand&quot;: &quot;Sisi&quot;,<br>        &quot;price&quot;: 1.79,<br>        &quot;unit&quot;: &quot;1,5 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239373330363935?revLabel=2&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;DubbelFrisss 1Kcal Ananas &amp; mango&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi511027/dubbelfrisss-1kcal-ananas-en-mango&quot;,<br>        &quot;brand&quot;: &quot;DubbelFrisss&quot;,<br>        &quot;price&quot;: 1.85,<br>        &quot;unit&quot;: &quot;1,5 l&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: &quot;2 + 2 gratis&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383736343034?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Johma Kip-mangosalade 1 ster&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8710506073683&quot;,<br>        &quot;brand&quot;: &quot;Signature Foods Group&quot;,<br>        &quot;price&quot;: 2.89,<br>        &quot;unit&quot;: &quot;175 g&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/41db0000-ff8a-0003-7838-08d6283d6a40/images/AW0HA3GItENDpZ-NPK0ohvI./AADDJSf-AwB4MgjXzOy6GA.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Pickwick Rooibos mango &amp; peach&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi195854/pickwick-rooibos-mango-en-peach&quot;,<br>        &quot;brand&quot;: &quot;Pickwick&quot;,<br>        &quot;price&quot;: 1.79,<br>        &quot;unit&quot;: &quot;20 stuks&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239373932323139?revLabel=3&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Ananas mango&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi520319/ah-ananas-mango&quot;,<br>        &quot;brand&quot;: &quot;AH&quot;,<br>        &quot;price&quot;: 1.75,<br>        &quot;unit&quot;: &quot;150 g&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: &quot;3 voor 5.00&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383731393534?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Mango duo eetrijp&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8718366127928&quot;,<br>        &quot;brand&quot;: &quot;Yex B.V.&quot;,<br>        &quot;price&quot;: 2.99,<br>        &quot;unit&quot;: &quot;2 stuk(s)&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: &quot;2 voor 4.00&quot;,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/61ce0000-ff27-0003-2b15-08d9cec799a0/images/AW0HA3GItENDpZ-NPK0ohvI./AADOYSf-AwAydQjZz0eKvQ.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;g'woon Appel/sinaasappel mango vruchtendrank&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8718989003586&quot;,<br>        &quot;brand&quot;: &quot;Refresco B.V.&quot;,<br>        &quot;price&quot;: 1.29,<br>        &quot;unit&quot;: &quot;1 l&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/4e700000-ff27-0003-ff53-08da37410db4/images/AW0HA3GItENDpZ-NPK0ohvI./AAAkWif-AwC3IAjaWMuiiA.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Appelsientje Dubbeldrank mango passievrucht&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8720157463030&quot;,<br>        &quot;brand&quot;: &quot;Riedel Bv&quot;,<br>        &quot;price&quot;: 1.59,<br>        &quot;unit&quot;: &quot;1 l&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/79360000-ff27-0003-93b8-08d884b3a5df/images/AW0HA3GItENDpZ-NPK0ohvI./AABKcyf-AwDDVwjZoFa2ww.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Optimel Drinkyoghurt Mango Passievrucht 0% Vet 1500 ml Pak&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8712800140566&quot;,<br>        &quot;brand&quot;: &quot;Frieslandcampina N.V.&quot;,<br>        &quot;price&quot;: 2.61,<br>        &quot;unit&quot;: &quot;1.5 l&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/5b59697d-1afa-4ae4-b805-365136933e99/images/AW0HA3GItENDpZ-NPK0ohvI./AADOYSf-AwCOcgjZ2xEmkw.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;EAT ME Mango&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/3492&quot;,<br>        &quot;brand&quot;: &quot;Smeding Groenten en Fruit&quot;,<br>        &quot;price&quot;: 1.79,<br>        &quot;unit&quot;: &quot;1 stuk(s)&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/b3420000-ffdf-0003-5b25-08d5d520895e/images/AW0HA3GItENDpZ-NPK0ohvI./AAApXCf-AwArcAjWmKijpA.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Optimel Drinkyoghurt mango passievrucht&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8712800035657&quot;,<br>        &quot;brand&quot;: &quot;Frieslandcampina N.V.&quot;,<br>        &quot;price&quot;: 1.89,<br>        &quot;unit&quot;: &quot;1 l&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/0b276955-0a78-49ba-af65-531d5bc6a539/images/AW0HA3GItENDpZ-NPK0ohvI./AADOYSf-AwDEjwjZ2xEgKw.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Zakje met mango stukjes&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi445512/ah-zakje-met-mango-stukjes&quot;,<br>        &quot;brand&quot;: &quot;AH&quot;,<br>        &quot;price&quot;: 5.05,<br>        &quot;unit&quot;: &quot;1 kg&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383531383238?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Appelsientje Mango volle smaak&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi436027/appelsientje-mango-volle-smaak&quot;,<br>        &quot;brand&quot;: &quot;Appelsientje&quot;,<br>        &quot;price&quot;: 1.99,<br>        &quot;unit&quot;: &quot;1 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383238303438?revLabel=3&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Olvarit Appel perzik en mango 12+ maanden&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8591119001993&quot;,<br>        &quot;brand&quot;: &quot;Nutricia Nederland B.V.&quot;,<br>        &quot;price&quot;: 1.35,<br>        &quot;unit&quot;: &quot;200 g&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/0f7e0000-ff41-0003-29d3-08d3fcba1d2c/images/AW0HA3GItENDpZ-NPK0ohvI./AABKcyf-AwB4YwjZoF5cqA.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Del Monte Mango Schijfjes&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/24000195252&quot;,<br>        &quot;brand&quot;: &quot;Pietercil Barends B.V.&quot;,<br>        &quot;price&quot;: 2.4,<br>        &quot;unit&quot;: &quot;425 g&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/4a370000-ff41-0003-8626-08d399364c92/images/AW0HA3GItENDpZ-NPK0ohvI./AADsFEH-AwARZAjTyqo09A.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Fuze Tea Mango chamomile&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi454525/fuze-tea-mango-chamomile&quot;,<br>        &quot;brand&quot;: &quot;Fuze Tea&quot;,<br>        &quot;price&quot;: 2.09,<br>        &quot;unit&quot;: &quot;1,25 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239393030363139?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Zongerijpte mango stukjes&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi209868/ah-zongerijpte-mango-stukjes&quot;,<br>        &quot;brand&quot;: &quot;AH&quot;,<br>        &quot;price&quot;: 2.5,<br>        &quot;unit&quot;: &quot;175 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_434d50303537343939?revLabel=8&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Bonbébé Fruithapje perzik appel mango&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8710624289133&quot;,<br>        &quot;brand&quot;: &quot;Superunie&quot;,<br>        &quot;price&quot;: 1.04,<br>        &quot;unit&quot;: &quot;200 g&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/37490000-ff27-0003-dc24-08d6fe2741aa/images/AW0HA3GItENDpZ-NPK0ohvI./AABbUCf-AwCaVQjYLfcXnw.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Fuze Tea Mango chamomile 4-pack&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi437911/fuze-tea-mango-chamomile-4-pack&quot;,<br>        &quot;brand&quot;: &quot;Fuze Tea&quot;,<br>        &quot;price&quot;: 2.59,<br>        &quot;unit&quot;: &quot;4 x 0,25 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239363935383035?revLabel=3&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Zongerijpte mango stukjes&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi133719/ah-zongerijpte-mango-stukjes&quot;,<br>        &quot;brand&quot;: &quot;AH&quot;,<br>        &quot;price&quot;: 3.5,<br>        &quot;unit&quot;: &quot;275 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_434d50363339343635?revLabel=5&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Sisi No bubbles mango&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8715600245394&quot;,<br>        &quot;brand&quot;: &quot;Vrumona B.V.&quot;,<br>        &quot;price&quot;: 1.88,<br>        &quot;unit&quot;: &quot;1.5 l&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/734a0000-ff27-0003-0c3b-08d929ba3913/images/AW0HA3GItENDpZ-NPK0ohvI./AAAkWif-AwCErQjaWZVo6Q.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Fuze Tea Green tea mango chamomile&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi428731/fuze-tea-green-tea-mango-chamomile&quot;,<br>        &quot;brand&quot;: &quot;Fuze Tea&quot;,<br>        &quot;price&quot;: 2.49,<br>        &quot;unit&quot;: &quot;1,5 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239393030353830?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Lipton Mango&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi474693/lipton-mango&quot;,<br>        &quot;brand&quot;: &quot;Lipton&quot;,<br>        &quot;price&quot;: 2.69,<br>        &quot;unit&quot;: &quot;1,5 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383931353933?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Johma Kip-mango salade&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi438913/johma-kip-mango-salade&quot;,<br>        &quot;brand&quot;: &quot;Johma&quot;,<br>        &quot;price&quot;: 2.99,<br>        &quot;unit&quot;: &quot;175 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239353830383730?revLabel=4&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Drinkyoghurt passievrucht mango&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi456336/ah-drinkyoghurt-passievrucht-mango&quot;,<br>        &quot;brand&quot;: &quot;AH&quot;,<br>        &quot;price&quot;: 1.09,<br>        &quot;unit&quot;: &quot;1 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239373533343538?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Fruity King Smoothie mango&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/4049377017514&quot;,<br>        &quot;brand&quot;: &quot;Hollands Best Vleeswaren Bv&quot;,<br>        &quot;price&quot;: 1.04,<br>        &quot;unit&quot;: &quot;250 ml&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/25c30000-ff27-0003-ba0c-08d7ae30344c/images/AW0HA3GItENDpZ-NPK0ohvI./AADDJSf-AwDv8AjXzO7PJA.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Mango&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi93224/ah-mango&quot;,<br>        &quot;brand&quot;: &quot;AH&quot;,<br>        &quot;price&quot;: 1.89,<br>        &quot;unit&quot;: &quot;per stuk&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: &quot;2 voor 2.50&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_434d5034303237373031?revLabel=2&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Doosje met mangostukjes&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi164070/ah-doosje-met-mangostukjes&quot;,<br>        &quot;brand&quot;: &quot;AH&quot;,<br>        &quot;price&quot;: 1.39,<br>        &quot;unit&quot;: &quot;250 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383531383137?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Optimel Drinkyoghurt mango passievrucht&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi129244/optimel-drinkyoghurt-mango-passievrucht&quot;,<br>        &quot;brand&quot;: &quot;Optimel&quot;,<br>        &quot;price&quot;: 1.42,<br>        &quot;unit&quot;: &quot;1 l&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: &quot;25% korting&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239363838393834?revLabel=2&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Mango eetrijp&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi129399/ah-mango-eetrijp&quot;,<br>        &quot;brand&quot;: &quot;AH&quot;,<br>        &quot;price&quot;: 2.99,<br>        &quot;unit&quot;: &quot;2 stuks&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_434d5032313632323936?revLabel=3&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Sourcy Vitaminwater mango&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi237903/sourcy-vitaminwater-mango&quot;,<br>        &quot;brand&quot;: &quot;Sourcy&quot;,<br>        &quot;price&quot;: 1.99,<br>        &quot;unit&quot;: &quot;1 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239363134323530?revLabel=5&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Zongerijpte mango sticks&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi388479/ah-zongerijpte-mango-sticks&quot;,<br>        &quot;brand&quot;: &quot;AH&quot;,<br>        &quot;price&quot;: 4.5,<br>        &quot;unit&quot;: &quot;375 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239363538303034?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Maza Hoemoes spicy mango&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8714779006492&quot;,<br>        &quot;brand&quot;: &quot;Maza Mediterranean Delicacies&quot;,<br>        &quot;price&quot;: 2.79,<br>        &quot;unit&quot;: &quot;200 g&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: &quot;2 voor 3.00&quot;,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/2d740000-ff27-0003-b6d6-08d7594aca73/images/AW0HA3GItENDpZ-NPK0ohvI./AADPRCf-AwBpYAjZ65Gujw.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Coop smoothie mango&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8710725018892&quot;,<br>        &quot;brand&quot;: &quot;Fruity line B.V.&quot;,<br>        &quot;price&quot;: 2.49,<br>        &quot;unit&quot;: &quot;500 ml&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/75444bdc-36f5-4e8a-be53-96e07c8db580/images/AW0HA3GItENDpZ-NPK0ohvI./AABKcyf-AwAKhgjZoF89ZQ.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Mango blokjes&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8717215018301&quot;,<br>        &quot;brand&quot;: &quot;Fruity Pack B.V.&quot;,<br>        &quot;price&quot;: 2,<br>        &quot;unit&quot;: &quot;120 g&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: &quot;3 voor 5.00&quot;,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/25c30000-ff27-0003-47a7-08d7bec2f8bd/images/AW0HA3GItENDpZ-NPK0ohvI./AAB1Tif-AwCv5QjX23HpGA.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Melkan Drinkyoghurt mango-passievrucht&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8710624292201&quot;,<br>        &quot;brand&quot;: &quot;Frieslandcampina N.V.&quot;,<br>        &quot;price&quot;: 1.09,<br>        &quot;unit&quot;: &quot;1 l&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/2d740000-ff27-0003-fe00-08d7141e6083/images/AW0HA3GItENDpZ-NPK0ohvI./AABbUCf-AwBmuAjYLfc6zA.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Servero Fruit compote mango/appel/aardbei&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/4008596502980&quot;,<br>        &quot;brand&quot;: &quot;Coroos Conserven B.V.&quot;,<br>        &quot;price&quot;: 2.19,<br>        &quot;unit&quot;: &quot;350 g&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/6d780000-ff27-0003-1bed-08d90e4455eb/images/AW0HA3GItENDpZ-NPK0ohvI./AAB4bSf-AwDloAjZD4sEUA.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;DubbelDrank Mango &amp; guanabana&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8713300079189&quot;,<br>        &quot;brand&quot;: &quot;Frieslandcampina N.V.&quot;,<br>        &quot;price&quot;: 1.67,<br>        &quot;unit&quot;: &quot;1 l&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/5a8cf24f-5b5b-4922-8d8e-d8fad3a95f09/images/AW0HA3GItENDpZ-NPK0ohvI./AABKcyf-AwBGaQjZoF9yCQ.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Biologisch Mango&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi366766/ah-biologisch-mango&quot;,<br>        &quot;brand&quot;: &quot;AH Biologisch&quot;,<br>        &quot;price&quot;: 1.99,<br>        &quot;unit&quot;: &quot;per stuk&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_434d50323034373439?revLabel=2&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;CoolBest Mango dream&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi62190/coolbest-mango-dream&quot;,<br>        &quot;brand&quot;: &quot;CoolBest&quot;,<br>        &quot;price&quot;: 2.19,<br>        &quot;unit&quot;: &quot;1 l&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383239333935?revLabel=2&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Alpro Mango more fruit mango&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi438170/alpro-mango-more-fruit-mango&quot;,<br>        &quot;brand&quot;: &quot;Alpro&quot;,<br>        &quot;price&quot;: 2.19,<br>        &quot;unit&quot;: &quot;400 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239363037373435?revLabel=2&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Kleine salade mango amandel&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi492314/ah-kleine-salade-mango-amandel&quot;,<br>        &quot;brand&quot;: &quot;AH&quot;,<br>        &quot;price&quot;: 3.79,<br>        &quot;unit&quot;: &quot;260 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383735373036?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    }<br>]</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        </span>
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                        <td width="100"><span class="nested-group-step"></span></td>
+                    </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                    <tr class="test-SUCCESS">
+
+                        <td width="70" class="step-icon">
+                            <a name="1-1"></a>
+                                <span style="margin-left: 40px;"
+                                      class="nested-group-icon"><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                    <span class="nested-group-step">
+                                                When the response code is 200
+                                        </span>
+                                <span class="evidence">
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                        <td width="100"><span class="nested-group-step">004ms</span></td>
+                    </tr>
+                    <tr class="test-SUCCESS">
+
+                        <td width="70" class="step-icon">
+                            <a name="1-2"></a>
+                                <span style="margin-left: 40px;"
+                                      class="nested-group-icon"><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                    <span class="nested-group-step">
+                                                Then verify the results displayed for "mango"
+                                        </span>
+                                <span class="evidence">
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                        <td width="100"><span class="nested-group-step">033ms</span></td>
+                    </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                    <tr class="test-SUCCESS">
+
+                        <td width="50" class="step-icon">
+                            <a name="2"></a>
+                                <a href="javaScript:void(0)" onClick="toggleDiv('stepSection2')"
+                                   style="display:block">
+                                    <i class="fa fa-plus-square-o imgstepSection2 success-icon"
+                                       style="margin-left: 20px; float:left; padding-right:5px"></i>
+                                </a>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                <a href="javaScript:void(0)" onClick="toggleDiv('stepSection2')"
+                                   style="display:block;">
+                                    <span class="top-level-step">
+                                                Example 3: {product="tofu"}
+                                        </span>
+                                </a>
+                                <span class="evidence">
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="top-level-step">SUCCESS</span></td>
+                        <td width="100"><span class="top-level-step">861ms</span></td>
+                    </tr>
+                        <tr>
+                            <td colspan="5">
+                                <table id="stepSection2" class="step-table-nested" style="display:none;">
+                    <tr class="test-SUCCESS">
+
+                        <td width="70" class="step-icon">
+                            <a name="2-0"></a>
+                                <a href="javaScript:void(0)" onClick="toggleDiv('stepSection2-0')"
+                                   style="display:block">
+                                    <i class="fa fa-plus-square-o imgstepSection2-0 success-icon"
+                                       style="margin-left: 40px; float:left; padding-right:5px"></i>
+                                </a>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                <a href="javaScript:void(0)" onClick="toggleDiv('stepSection2-0')"
+                                   style="display:block;">
+                                    <span class="nested-step">
+                                                Given call endpoint for "tofu"
+                                        </span>
+                                </a>
+                                <span class="evidence">
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="nested-step">SUCCESS</span></td>
+                        <td width="100"><span class="nested-step">825ms</span></td>
+                    </tr>
+                        <tr>
+                            <td colspan="5">
+                                <table id="stepSection2-0" class="step-table-nested" style="display:none;">
+                    <tr class="test-SUCCESS">
+
+                        <td width="90" class="step-icon">
+                            <a name="2-0-0"></a>
+                                <span style="margin-left: 60px;"
+                                      class="nested-group-icon"><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                    <span class="nested-group-step">
+                                                GET https://waarkoop-server.herokuapp.com/api/v1/search/test/tofu
+                                        </span>
+                                <span class="evidence">
+                                        <span class="piece-of-evidence">
+                    <span>
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="collapse"
+                                data-target="#restModal-REST-13">
+                            REST Query
+                        </button>
+                    </span>
+                    <!-- Modal -->
+                    <div class="rest-query-details">
+                        <div class="collapse multi-collapse" id="restModal-REST-13">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4>Response</h4>
+                                        <p>URL: https://waarkoop-server.herokuapp.com/api/v1/search/test/tofu</p>
+                                        <p>Status code: 200</p>
+                                        <p>Content Type: null</p>
+                                        <h4>Request Headers</h4>
+                                        <pre>Accept=*/*</pre>
+                                        <h4>Content Body</h4>
+                                        <pre></pre>
+                                        <h4>Request Cookies</h4>
+                                        <pre></pre>
+                                        <h4>Response Headers</h4>
+                                        <pre>Connection: keep-alive<br>Date: Sun, 25 Sep 2022 22:20:04 GMT<br>Server: uvicorn<br>Content-Length: 3721<br>Content-Type: application/json<br>Via: 1.1 vegur</pre>
+                                    <h4>Response Body</h4>
+                                        <pre>[<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Biologisch Vegan naturel tofu rulstukjes&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi58091/ah-biologisch-vegan-naturel-tofu-rulstukjes&quot;,<br>        &quot;brand&quot;: &quot;AH Biologisch&quot;,<br>        &quot;price&quot;: 1.99,<br>        &quot;unit&quot;: &quot;180 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383436343938?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Biologisch Vegan pittige tofu reepjes&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi98642/ah-biologisch-vegan-pittige-tofu-reepjes&quot;,<br>        &quot;brand&quot;: &quot;AH Biologisch&quot;,<br>        &quot;price&quot;: 2.49,<br>        &quot;unit&quot;: &quot;180 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383437353930?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Vomar&quot;,<br>        &quot;title&quot;: &quot;Dutch Tofu 550 g&quot;,<br>        &quot;url&quot;: &quot;https://www.vomar.nl/producten/vers/fruit/any/147590&quot;,<br>        &quot;brand&quot;: &quot;Unbranded&quot;,<br>        &quot;price&quot;: 1.75,<br>        &quot;unit&quot;: &quot;550 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://files.vomar.nl/articles/Dutch-Tofu-550-g-8718300880476-1-637957249044300541.png&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Biologisch Vegan milde tofu reepjes&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi123819/ah-biologisch-vegan-milde-tofu-reepjes&quot;,<br>        &quot;brand&quot;: &quot;AH Biologisch&quot;,<br>        &quot;price&quot;: 2.49,<br>        &quot;unit&quot;: &quot;180 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383437353931?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;Vivera Gerookte tofu&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi523404/vivera-gerookte-tofu&quot;,<br>        &quot;brand&quot;: &quot;Vivera&quot;,<br>        &quot;price&quot;: 1.99,<br>        &quot;unit&quot;: &quot;200 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383736313133?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Vomar&quot;,<br>        &quot;title&quot;: &quot;Bio+ Tofu 450 g&quot;,<br>        &quot;url&quot;: &quot;https://www.vomar.nl/producten/vers/fruit/any/102757&quot;,<br>        &quot;brand&quot;: &quot;Bio+&quot;,<br>        &quot;price&quot;: 1.75,<br>        &quot;unit&quot;: &quot;450 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://files.vomar.nl/articles/Bio-Tofu-450-g-8718300888328-1-637957249093363558.png&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Biologisch Vegan oosterse tofureepjes&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi397377/ah-biologisch-vegan-oosterse-tofureepjes&quot;,<br>        &quot;brand&quot;: &quot;AH Biologisch&quot;,<br>        &quot;price&quot;: 2.49,<br>        &quot;unit&quot;: &quot;180 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383439333737?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Biologisch Vegan tofu naturel&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi54905/ah-biologisch-vegan-tofu-naturel&quot;,<br>        &quot;brand&quot;: &quot;AH Biologisch&quot;,<br>        &quot;price&quot;: 1.27,<br>        &quot;unit&quot;: &quot;375 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383436353030?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;AH&quot;,<br>        &quot;title&quot;: &quot;AH Tofu naturel grootverpakking&quot;,<br>        &quot;url&quot;: &quot;https://www.ah.nl/producten/product/wi517117/ah-tofu-naturel-grootverpakking&quot;,<br>        &quot;brand&quot;: &quot;AH&quot;,<br>        &quot;price&quot;: 1.89,<br>        &quot;unit&quot;: &quot;550 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://static.ah.nl/dam/product/AHI_43545239383535313634?revLabel=1&amp;rendition=200x200_JPG_Q85&amp;fileType=binary&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Coop&quot;,<br>        &quot;title&quot;: &quot;Vivera Tofu&quot;,<br>        &quot;url&quot;: &quot;https://www.coop.nl/product/8718300880476&quot;,<br>        &quot;brand&quot;: &quot;Enkco Foodgroup&quot;,<br>        &quot;price&quot;: 1.67,<br>        &quot;unit&quot;: &quot;500 g&quot;,<br>        &quot;isPromo&quot;: true,<br>        &quot;promoDetails&quot;: false,<br>        &quot;image&quot;: &quot;https://syndy-content.azureedge.net/media/products/734a0000-ff27-0003-9d74-08d966dab0b0/images/AW0HA3GItENDpZ-NPK0ohvI./AABKcyf-AwDuGgjZoFaUxw.670x670.jpg&quot;<br>    },<br>    {<br>        &quot;provider&quot;: &quot;Vomar&quot;,<br>        &quot;title&quot;: &quot;Vivera Gerookte Tofu 200 g&quot;,<br>        &quot;url&quot;: &quot;https://www.vomar.nl/producten/vers/fruit/any/141200&quot;,<br>        &quot;brand&quot;: &quot;Vivera&quot;,<br>        &quot;price&quot;: 1.79,<br>        &quot;unit&quot;: &quot;200 g&quot;,<br>        &quot;isPromo&quot;: false,<br>        &quot;promoDetails&quot;: &quot;&quot;,<br>        &quot;image&quot;: &quot;https://files.vomar.nl/articles/Vivera-Gerookte-Tofu-200-g-8718300886492-1-637957258349705602.png&quot;<br>    }<br>]</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        </span>
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                        <td width="100"><span class="nested-group-step"></span></td>
+                    </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                    <tr class="test-SUCCESS">
+
+                        <td width="70" class="step-icon">
+                            <a name="2-1"></a>
+                                <span style="margin-left: 40px;"
+                                      class="nested-group-icon"><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                    <span class="nested-group-step">
+                                                When the response code is 200
+                                        </span>
+                                <span class="evidence">
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                        <td width="100"><span class="nested-group-step">003ms</span></td>
+                    </tr>
+                    <tr class="test-SUCCESS">
+
+                        <td width="70" class="step-icon">
+                            <a name="2-2"></a>
+                                <span style="margin-left: 40px;"
+                                      class="nested-group-icon"><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                    <span class="nested-group-step">
+                                                Then verify the results displayed for "tofu"
+                                        </span>
+                                <span class="evidence">
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                        <td width="100"><span class="nested-group-step">023ms</span></td>
+                    </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                    <tr class="test-SUCCESS">
+
+                        <td width="50" class="step-icon">
+                            <a name="3"></a>
+                                <a href="javaScript:void(0)" onClick="toggleDiv('stepSection3')"
+                                   style="display:block">
+                                    <i class="fa fa-plus-square-o imgstepSection3 success-icon"
+                                       style="margin-left: 20px; float:left; padding-right:5px"></i>
+                                </a>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                <a href="javaScript:void(0)" onClick="toggleDiv('stepSection3')"
+                                   style="display:block;">
+                                    <span class="top-level-step">
+                                                Given call endpoint for "car"
+                                        </span>
+                                </a>
+                                <span class="evidence">
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="top-level-step">SUCCESS</span></td>
+                        <td width="100"><span class="top-level-step">370ms</span></td>
+                    </tr>
+                        <tr>
+                            <td colspan="5">
+                                <table id="stepSection3" class="step-table-nested" style="display:none;">
+                    <tr class="test-SUCCESS">
+
+                        <td width="70" class="step-icon">
+                            <a name="3-0"></a>
+                                <span style="margin-left: 40px;"
+                                      class="nested-group-icon"><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                    <span class="nested-group-step">
+                                                GET https://waarkoop-server.herokuapp.com/api/v1/search/test/car
+                                        </span>
+                                <span class="evidence">
+                                        <span class="piece-of-evidence">
+                    <span>
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="collapse"
+                                data-target="#restModal-REST-17">
+                            REST Query
+                        </button>
+                    </span>
+                    <!-- Modal -->
+                    <div class="rest-query-details">
+                        <div class="collapse multi-collapse" id="restModal-REST-17">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4>Response</h4>
+                                        <p>URL: https://waarkoop-server.herokuapp.com/api/v1/search/test/car</p>
+                                        <p>Status code: 404</p>
+                                        <p>Content Type: null</p>
+                                        <h4>Request Headers</h4>
+                                        <pre>Accept=*/*</pre>
+                                        <h4>Content Body</h4>
+                                        <pre></pre>
+                                        <h4>Request Cookies</h4>
+                                        <pre></pre>
+                                        <h4>Response Headers</h4>
+                                        <pre>Connection: keep-alive<br>Date: Sun, 25 Sep 2022 22:20:05 GMT<br>Server: uvicorn<br>Content-Length: 105<br>Content-Type: application/json<br>Via: 1.1 vegur</pre>
+                                    <h4>Response Body</h4>
+                                        <pre>{<br>    &quot;detail&quot;: {<br>        &quot;error&quot;: true,<br>        &quot;message&quot;: &quot;Not found&quot;,<br>        &quot;requested_item&quot;: &quot;car&quot;,<br>        &quot;served_by&quot;: &quot;https://waarkoop.com&quot;<br>    }<br>}</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        </span>
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                        <td width="100"><span class="nested-group-step"></span></td>
+                    </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                    <tr class="test-SUCCESS">
+
+                        <td width="50" class="step-icon">
+                            <a name="4"></a>
+                                <span style="margin-left: 20px;"
+                                      class="top-level-icon"><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                        </td>
+
+                        <td class="step-description-column">
+                            <div class="step-description">
+                                    <span class="top-level-step">
+                                                Then verify the results does not displayed for unavailable product
+                                        </span>
+                                <span class="evidence">
+                                </span>
+                            </div>
+                        </td>
+
+                        <td width="130"><span class="top-level-step">SUCCESS</span></td>
+                        <td width="100"><span class="top-level-step">041ms</span></td>
+                    </tr>
+                <tr class="test-SUCCESS">
+                        <td colspan="2"></td>
+                    <td width="130"><span class="top-level-step"><em>SUCCESS</em></span></td>
+                    <td width="100"><span class="top-level-step"><em>7.37s</em></span></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <div id="beforefooter"></div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <span class="version">Serenity BDD version 2.6.0</span>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function toggleDiv(divId) {
+            $("#" + divId).toggle();
+            var imgsrc = $(".img" + divId).attr('src');
+            if (imgsrc == 'images/plus.png') {
+                $(".img" + divId).attr("src", function () {
+                    return "images/minus.png";
+                });
+
+            } else {
+                $(".img" + divId).attr("src", function () {
+                    return "images/plus.png";
+                });
+            }
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        //<![CDATA[
+
+        $(document).ready(function () {
+            $('img.screenshot').imgPreview({
+                imgCSS: {
+                    width: '500px'
+                },
+                distanceFromCursor: {top: 10, left: -200}
+            });
+        });
+
+        //]]>
+    </script>
+    <div id="imgPreviewContainer" style="position: absolute; top: 612px; left: 355px; display: none; " class=""><img
+                src="" style="display: none; "></div>
+    <div id="imgPreviewContainer2" style="position: absolute; top: 925px; left: 320px; display: none; " class="">
+        <img style="width: 200px; display: none; " src=""></div>
+    <div id="imgPreviewWithStyles" style="position: absolute; top: 1272px; left: 321px; display: none; " class="">
+        <img style="height: 200px; opacity: 1; display: none; " src=""></div>
+    <div id="imgPreviewWithStyles2" style="display: none; position: absolute; "><img style="height: 200px; "></div>
+    <div id="imgPreviewWithStyles3" style="display: none; position: absolute; "><img style="height: 200px; "></div>
+
+</div>
+</body>
+</html>
